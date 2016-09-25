@@ -56,4 +56,35 @@ class Router
     public function getParams(){
         return $this->params;
     }
+
+    public function dispatch($url){
+        if($this->match($url)){
+            $controller = $this->params['controller'];
+            $controller = $this->convertToStudlyCaps($controller);
+//            $controller = 'Posts';
+
+            if(class_exists($controller)){
+                $controller_object = new $controller;
+
+                $action = $this->params['action'];
+                $action = $this->ConvertToCamelCase($action);
+
+                if(is_callable([$controller_object, $action])){
+                    $controller_object->$action();
+                } else {
+                    echo "Method $action (in controller $controller ) not found";
+                }
+            } else {
+                echo "Controller Class $controller not found";
+            }
+        } else {
+            echo "No rout found";
+        }
+    }
+    protected function convertToStudlyCaps($controller){
+        return str_replace(' ', '', ucwords(str_replace('-',' ', $controller)));
+    }
+    protected function ConvertToCamelCase($action){
+        return lcfirst($this->convertToStudlyCaps($action));
+    }
 }
