@@ -1,4 +1,5 @@
 <?php
+namespace Core;
 
 /**
  * Created by PhpStorm.
@@ -61,6 +62,8 @@ class Router
         if($this->match($url)){
             $controller = $this->params['controller'];
             $controller = $this->convertToStudlyCaps($controller);
+            $controller = 'App\Controllers\\'.$controller;
+
 //            $controller = 'Posts';
 
             if(class_exists($controller)){
@@ -87,4 +90,5 @@ class Router
     protected function ConvertToCamelCase($action){
         return lcfirst($this->convertToStudlyCaps($action));
     }
+
 }

@@ -1,11 +1,20 @@
 <?php
 
 //echo 'Requisted URL = "'. $_SERVER['QUERY_STRING']. '"';
-require '../App/Controllers/Posts.php';
-require '../App/Controllers/Home.php';
-// Router Require
-require '../Core/Router.php';
-$router = new Router();
+//require '../App/Controllers/Posts.php';
+//require '../App/Controllers/Home.php';
+//// Router Require
+//require '../Core/Router.php';
+spl_autoload_register(function ($class){
+    $root = dirname(__DIR__);
+    $file = $root.'/'.str_replace('\\', '/', $class) . '.php';
+    if(is_readable($file)){
+        require $file;
+
+    }
+});
+//require '../Core/Router.php';
+$router = new Core\Router();
 //echo get_class($router);
 
 // Add the routes :
@@ -39,7 +48,7 @@ $router->add('{controller}/{id:\d+}/{action}');
 //    else:
 //        echo "Not a valide root <br>";
 //    endif;
-//echo "-----------------------------------------<br>";
+
 //foreach ($router->routes as $key=> $value):
 //    echo '<pre>';
 //echo 'Key=> '.$key.', Params: ';
