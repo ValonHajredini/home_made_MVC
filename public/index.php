@@ -13,11 +13,12 @@ $url = $_SERVER['QUERY_STRING'];
 
 //    Added Routs
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
+$router->add('endri', ['controller' => 'Posts', 'action' => 'show']);
 $router->add('posts', ['controller' => 'Posts', 'action' => 'index']);
 $router->add('all-users', ['controller' => 'Users', 'action' => 'index']);
 //$router->add('posts/new', ['controller' => 'Posts', 'action' => 'new']);
 $router->add('{controller}/{action}');
-//$router->add('admin/{action}/{controller}');
+$router->add('admin/{controller}/{action}',['namespace' =>'Admin']);
 $router->add('{controller}/{id:\d+}/{action}');
 //    Dispach url and Create automaticly object based on controller and action
 $router->dispatch($url);

@@ -9,11 +9,11 @@ namespace App\Controllers;
 class Posts extends \Core\Controller{
     protected function before(){
         echo "(before)<br>";
-        return false;
+//        return false;
 
     }
     protected function after(){
-        echo '(after)';
+        echo '<br>(after)';
     }
 //    Index Action
     public function indexAction(){
@@ -29,5 +29,8 @@ class Posts extends \Core\Controller{
     public function editAction(){
         echo 'Hello from edit action in Posts controller'.$this->rout_params['id'].'<br>';
         echo '<p>Route Parameters:<pre>'.htmlspecialchars(print_r($this->rout_params, true)).' </pre>';
+    }
+    public function showAction(){
+        echo 'This is user show';
     }
 }

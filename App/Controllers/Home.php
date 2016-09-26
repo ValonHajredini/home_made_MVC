@@ -12,7 +12,7 @@ class Home extends \Core\Controller {
         echo "(before)";
     }
     protected function after(){
-        echo '(after)';
+        echo '<br>(after)';
     }
     public function indexAction(){
         echo 'This is the home page';

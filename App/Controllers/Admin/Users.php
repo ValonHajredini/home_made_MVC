@@ -6,7 +6,7 @@
  * Time: 10:50 AM
  */
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 
 class Users extends \Core\Controller{
@@ -16,10 +16,11 @@ class Users extends \Core\Controller{
 
     }
     protected function after(){
-        echo '(after)';
+        echo '<br>(after)';
     }
     public function indexAction(){
         echo 'This is for users';
     }
+
 
 }
