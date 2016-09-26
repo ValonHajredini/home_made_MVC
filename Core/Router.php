@@ -54,13 +54,14 @@ class Router{
                 if(is_callable([$controller_object, $action])){
                     $controller_object->$action();
                 } else {
-                    echo "Method $action (in controller $controller ) not found";
+//                    echo "Method $action (in controller $controller ) not found";
+                    throw new \Exception("Method $action (in controller $controller ) not found");
                 }
             } else {
-                echo "Controller Class $controller not found";
+                throw new \Exception("Controller Class $controller not found");
             }
         } else {
-            echo "No rout found";
+            throw new \Exception("No rout found");
         }
     }
     protected function convertToStudlyCaps($controller){

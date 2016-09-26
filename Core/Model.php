@@ -8,21 +8,18 @@
 
 namespace Core;
 use PDO;
+use \App\Config;
 
 abstract class Model{
     protected static function getDB(){
         static $db = null;
         if ($db === null){
-            $host       = "localhost";
-            $db_name    = 'mvc';
-            $user       = 'root';
-            $password   = '';
-            try {
-                $db = new PDO("mysql:host=$host;dbname=$db_name;charset=utf8", $user, $password);
-                return $db;
-            } catch (\PDOException $e){
-                echo $e->getMessage();
-            }
+            $dbs = 'mysql:host='.Config::DB_HOST.';dbname='.Config::DB_NAME.';charset=utf8';
+            $db = new PDO($dbs , Config::DB_USER, Config::DB_PASS);
+//            Throw an Exception when error accords
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $db;
+
         }
     }
 }

@@ -10,6 +10,9 @@ spl_autoload_register(function ($class){
         require $file;
     }
 });
+error_reporting(E_ALL);
+set_error_handler('Core\Error::errorrHandler');
+set_exception_handler('Core\Error::exceptionHandler');
 $router = new Core\Router();
 // Add the routes :
 $url = $_SERVER['QUERY_STRING'];
