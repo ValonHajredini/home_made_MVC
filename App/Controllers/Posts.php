@@ -38,4 +38,8 @@ class Posts extends \Core\Controller{
     public function showAction(){
         echo 'This is user show';
     }
+    public function arsimAction(){
+        $a = 'hello world';
+        View::renderTemplate('Posts/arsim.html',['a'=>$a]);
+    }
 }
