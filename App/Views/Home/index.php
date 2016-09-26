@@ -1,3 +1,10 @@
+<?php ?>
+/**
+ * Created by PhpStorm.
+ * User: hajre
+ * Date: 9/26/2016
+ * Time: 5:15 PM
+ */
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,15 +12,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Output Escaping<?php echo $name?></h1>
-<?php
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $name = htmlspecialchars($_POST['name']);
-        echo "Hello,". $name."";
-        ?>
-        <?php
-    }
-?>
+<h1>Output Escaping <?php echo $name?></h1>
 
 <form method="post">
     <div>
@@ -24,11 +23,12 @@
         <input type="submit" value="submit">
     </div>
 </form>
-<?php
-    foreach ($Colors as $color):
-        echo 'The color is> '.$color.'<br>';
-    endforeach;
-?>
+
+<ul>
+    <?php foreach ($Colors as $color):?>
+    <li><?php echo $color ?></li>
+    <?php endforeach;?>
+</ul>
 </body>
 </html>
 

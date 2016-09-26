@@ -1,5 +1,6 @@
 <?php
 namespace App\Controllers;
+use \Core\View;
 /**
  * Created by PhpStorm.
  * User: hajre
@@ -8,19 +9,20 @@ namespace App\Controllers;
  */
 class Posts extends \Core\Controller{
     protected function before(){
-        echo "(before)<br>";
 //        return false;
 
     }
     protected function after(){
-        echo '<br>(after)';
+
     }
 //    Index Action
     public function indexAction(){
-        echo "Hello from Posts index";
-        echo '<br>';
-        echo '<p>Query string parameters: </p>';
-        echo '<pre>'.htmlspecialchars(print_r($_GET, true)).'</pre>';
+//        echo "Hello from Posts index";
+//        echo '<br>';
+//        echo '<p>Query string parameters: </p>';
+//        echo '<pre>'.htmlspecialchars(print_r($_GET, true)).'</pre>';
+        $posts = ['post1','post2','post3'];
+        View::renderTemplate('Posts/index.html',['posts'=> $posts]);
     }
 //    Add new Action
     public function addNewAction(){

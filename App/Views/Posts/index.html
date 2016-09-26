@@ -1,0 +1,11 @@
+{% extends "Layoutes/main.html" %}
+{% block title%}Home{% endblock %}
+{% block body%}
+
+<h1>All posts</h1>
+<ul>
+    {% for post in posts%}
+        <li>{{post}}</li>
+    {% endfor%}
+</ul>
+{% endblock %}

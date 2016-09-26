@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__DIR__).'/Vendor/Twig/lib/Twig/Autoloader.php';
+Twig_Autoloader::register();
 //  Auto load
 spl_autoload_register(function ($class){
     $root = dirname(__DIR__);
