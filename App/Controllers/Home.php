@@ -7,8 +7,7 @@ namespace App\Controllers;
  * Date: 9/26/2016
  * Time: 12:26 AM
  */
-class Home
-{
+class Home extends \Core\Controller {
     public function index(){
         echo 'This is the home page';
     }

@@ -1,48 +1,31 @@
 <?php
 namespace Core;
-
 /**
  * Created by PhpStorm.
  * User: hajre
  * Date: 9/25/2016
  * Time: 11:13 AM
  */
-class Router
-{
+class Router{
     public  $routes  = [];
-//    Parameters from the match routes
+//      Parameters from the match routes
     public  $params  = [];
-    /*
-     * Add route to routing table
-     * $param array $patam parameters (controller, action, rtc..)
-     *
-     * @routrn void
-     * */
+//      Add route to routing table, $param array $patam parameters (controller, action, rtc..)
     public function add($route, $params = []){
         $route = preg_replace('/\//','\\/', $route);
         $route = preg_replace('/\{([a-z]+)\}/','(?P<\1>[a-z-]+)', $route);
         $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
         $route = '/^'.$route.'$/i';
         $this->routes[$route] = $params;
-
     }
     public function getRoutes(){
         return $this->routes;
     }
-
 //    Match the routes to root in the routing table
     public function match ($url){
-//        foreach($this->routes as $route => $params):
-//            if($url == $route):
-//                $this->params = $params;
-//                return true;
-//            endif;
-//        endforeach;
-//        $reg_ex = '/^(?P<Controller>[a-z-]+)\/(?P<Action>[a-z-]+$)/';
         foreach ($this->routes as $route => $params){
             if(preg_match($route, $url, $matches)) {
-                //        Het named capture
-//                $params = [];
+//              Get named capture
                 foreach ($matches as $key => $match) {
                     if (is_string($key)) {
                         $params[$key] = $match;
@@ -57,22 +40,16 @@ class Router
     public function getParams(){
         return $this->params;
     }
-
     public function dispatch($url){
         $url = $this->removeQueryStringVariables($url);
         if($this->match($url)){
             $controller = $this->params['controller'];
             $controller = $this->convertToStudlyCaps($controller);
             $controller = 'App\Controllers\\'.$controller;
-
-//            $controller = 'Posts';
-
             if(class_exists($controller)){
-                $controller_object = new $controller;
-
+                $controller_object = new $controller($this->params);
                 $action = $this->params['action'];
                 $action = $this->ConvertToCamelCase($action);
-
                 if(is_callable([$controller_object, $action])){
                     $controller_object->$action();
                 } else {
@@ -91,6 +68,7 @@ class Router
     protected function ConvertToCamelCase($action){
         return lcfirst($this->convertToStudlyCaps($action));
     }
+//    Remove query string before Match( $url )
     protected function removeQueryStringVariables($url){
         if($url != ''){
             $parts = explode('&', $url, 2);
