@@ -1,6 +1,6 @@
 <?php
 namespace App\Controllers;
-
+use \Core\View;
 /**
  * Created by PhpStorm.
  * User: hajre
@@ -9,13 +9,13 @@ namespace App\Controllers;
  */
 class Home extends \Core\Controller {
     protected function before(){
-        echo "(before)";
+//        echo "(before)";
     }
     protected function after(){
-        echo '<br>(after)';
+//        echo '<br>(after)';
     }
     public function indexAction(){
-        echo 'This is the home page';
+        View::render('Home/index.php');
     }
 
 
