@@ -15,7 +15,11 @@ class Home extends \Core\Controller {
 //        echo '<br>(after)';
     }
     public function indexAction(){
-        View::render('Home/index.php');
+        $name = 'Ekoloni';
+        View::render('Home/index.php', [
+            'name'      =>  $name,
+            'Colors'    => ['red', 'green', 'blue']
+        ]);
     }
 
 
