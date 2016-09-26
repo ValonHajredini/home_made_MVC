@@ -1,4 +1,5 @@
 <?php
+//require '../Core/database_check.php';
 require_once dirname(__DIR__).'/Vendor/Twig/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
 //  Auto load

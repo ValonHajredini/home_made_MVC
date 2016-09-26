@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use \Core\View;
+use App\Models\Post;
 /**
  * Created by PhpStorm.
  * User: hajre
@@ -17,12 +18,14 @@ class Posts extends \Core\Controller{
     }
 //    Index Action
     public function indexAction(){
+        $dbPosts = Post::getAll();
 //        echo "Hello from Posts index";
 //        echo '<br>';
 //        echo '<p>Query string parameters: </p>';
 //        echo '<pre>'.htmlspecialchars(print_r($_GET, true)).'</pre>';
-        $posts = ['post1','post2','post3'];
-        View::renderTemplate('Posts/index.html',['posts'=> $posts]);
+//        $posts = ['post1','post2','post3'];
+        View::renderTemplate('Posts/index.html',['posts'=> $dbPosts]);
+//        View::render('Posts/index.php',['posts'=> $dbPosts]);
     }
 //    Add new Action
     public function addNewAction(){

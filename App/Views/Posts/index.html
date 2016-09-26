@@ -5,7 +5,13 @@
 <h1>All posts</h1>
 <ul>
     {% for post in posts%}
-        <li>{{post}}</li>
+    <li><p>post {{post.id}}</p>
+        <h2>{{post.title}}</h2>
+        <p>{{post.content }}</p>
+
+    </li>
     {% endfor%}
 </ul>
+
+<br>
 {% endblock %}
