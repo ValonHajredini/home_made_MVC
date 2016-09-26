@@ -10,6 +10,9 @@ class Posts
 {
     public function index(){
         echo "Hello from index";
+        echo '<br>';
+        echo '<p>Query string parameters: </p>';
+        echo '<pre>'.htmlspecialchars(print_r($_GET, true)).'</pre>';
     }
     public function addNew(){
         echo "Hello from add new";
