@@ -9,6 +9,8 @@
 namespace App\Controllers\Admin;
 
 
+use Core\View;
+
 class Users extends \Core\Controller{
     protected function before(){
         echo "(before)<br>";
@@ -19,7 +21,8 @@ class Users extends \Core\Controller{
         echo '<br>(after)';
     }
     public function indexAction(){
-        echo 'This is for users';
+//        echo 'This is for users';
+        View::renderTemplate('admin/index.php',['eko' => '112233']);
     }
 
 

@@ -1,5 +1,7 @@
 <?php
 namespace App\Controllers;
+use Core\Model;
+use Core\Router;
 use \Core\View;
 use App\Models\Post;
 /**
@@ -11,19 +13,21 @@ use App\Models\Post;
 class Posts extends \Core\Controller{
     protected function before(){
 //        return false;
+        $user =2;
+
+        echo "(Before)";
+        if ($user != 2){
+            echo "User not loged in";
+            return false;
+        }
 
     }
     protected function after(){
-
+        echo "(after)";
     }
 //    Index Action
     public function indexAction(){
-        $dbPosts = Post::getAll();
-//        echo "Hello from Posts index";
-//        echo '<br>';
-//        echo '<p>Query string parameters: </p>';
-//        echo '<pre>'.htmlspecialchars(print_r($_GET, true)).'</pre>';
-//        $posts = ['post1','post2','post3'];
+        $dbPosts = Post::all();
         View::renderTemplate('Posts/index.html',['posts'=> $dbPosts]);
 //        View::render('Posts/index.php',['posts'=> $dbPosts]);
     }
@@ -32,14 +36,15 @@ class Posts extends \Core\Controller{
         echo "Hello from addNew add new";
     }
     public function editAction(){
-        echo 'Hello from edit action in Posts controller'.$this->rout_params['id'].'<br>';
-        echo '<p>Route Parameters:<pre>'.htmlspecialchars(print_r($this->rout_params, true)).' </pre>';
+//        echo 'Hello from edit action in Posts controller'.$this->rout_params['id'].'<br>';
+//        echo '<p>Route Parameters:<pre>'.htmlspecialchars(print_r($this->rout_params, true)).' </pre>';
+
     }
     public function showAction(){
-        echo 'This is user show';
+//        print_r();
+        $params = $_GET;
+        $record = Post::find($params['a']);
+        View::render('Posts/show.php',['post'=> $record, 'params' => $params ]);
     }
-    public function arsimAction(){
-        $a = 'hello world';
-        View::renderTemplate('Posts/arsim.html',['a'=>$a]);
-    }
+
 }

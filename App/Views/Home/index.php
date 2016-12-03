@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
+Valon
 <h1>Output Escaping <?php echo $name?></h1>
 
 <form method="post">

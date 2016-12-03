@@ -7,8 +7,6 @@
  */
 
 namespace Core;
-
-
 class View
 {
 

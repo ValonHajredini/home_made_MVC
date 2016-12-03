@@ -15,7 +15,7 @@ if ($conn->connect_error){
 class posts{
     public static function getAll(){
         $host       = "localhost";
-        $db_name    = 'mvc';
+        $db_name    = 'chatapi';
         $user       = 'root';
         $password   = '';
         try{
