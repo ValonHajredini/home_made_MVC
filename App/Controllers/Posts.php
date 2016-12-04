@@ -41,10 +41,7 @@ class Posts extends \Core\Controller{
 
     }
     public function showAction(){
-//        print_r();
-        $params = $_GET;
-        $record = Post::find($params['a']);
-        View::render('Posts/show.php',['post'=> $record, 'params' => $params ]);
+        View::render('Posts/show.php',['post'=> ['eko','loni'], 'params' => $_GET ]);
     }
 
 }

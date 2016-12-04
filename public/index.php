@@ -1,7 +1,11 @@
 <?php
 //require '../Core/database_check.php';
-require_once dirname(__DIR__).'/Vendor/Twig/lib/Twig/Autoloader.php';
-Twig_Autoloader::register();
+//require_once dirname(__DIR__).'/Vendor/Twig/lib/Twig/Autoloader.php';
+require_once dirname(__DIR__).'/Vendor/autoload.php';
+$loader = new Twig_Loader_Filesystem();
+Twig_Autoloader::register($loader);
+//$twig = new Twig_Environment($loader);
+//$twig->
 //  Auto load
 
 spl_autoload_register(function ($class){
