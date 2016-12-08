@@ -1,14 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: hajre
- * Date: 12/3/2016
- * Time: 5:40 PM
- */
+<?php namespace App\Models;
+use Core\Model;
 
-namespace App\Models;
-
-
-class User extends \Core\Model{
+class User extends Model{
 
 }

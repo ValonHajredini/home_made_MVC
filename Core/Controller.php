@@ -44,7 +44,7 @@ abstract class Controller{
         header("Location:".$web_root);
     }
     public static function path($path){
-        echo get_called_class ();
+//        echo get_called_class ();
         echo  "http://".$_SERVER['HTTP_HOST']."/$path";
     }
     public static function curPageURL($page) {
@@ -72,6 +72,25 @@ abstract class Controller{
     }
     public function location($path){
         header("Location:".self::curPageURL($path)."");
+    }
+
+    public static function viewLocation($path){
+        header("Location:".self::curPageURL($path)."");
+    }
+    protected function modelTable(array $tables =[]){
+        $modelarray = [];
+        foreach ($tables as $tbl){
+            foreach ($tbl as $t){
+                if (is_string($t)){
+                    $model = ucfirst(substr($t, 0, -1));
+                    $modelarray[$model] = $t;
+                }
+            }
+
+
+        }
+        return $modelarray;
+
     }
 
 }

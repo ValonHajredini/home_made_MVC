@@ -15,22 +15,21 @@ Model::setPassword(Config::DB_PASS);
 Model::setDatabase(Config::DB_NAME);
 Model::connect();
 abstract class Model{
-    protected static function getDB(){
-        static $db = null;
-        if ($db === null){
-            $dbs = 'mysql:host='.Config::DB_HOST.';dbname='.Config::DB_NAME.';charset=utf8';
-            $db = new PDO($dbs , Config::DB_USER, Config::DB_PASS);
-//            Throw an Exception when error accords
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $db;
+//    protected static function getDB(){
+//        static $db = null;
+//        if ($db === null){
+//            $dbs = 'mysql:host='.Config::DB_HOST.';dbname='.Config::DB_NAME.';charset=utf8';
+//            $db = new PDO($dbs , Config::DB_USER, Config::DB_PASS);
+////            Throw an Exception when error accords
+//            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//            return $db;
+//
+//        }
+//    }
 
-        }
-    }
-
-//===============================================================================
+//=====================================================================================================
     private static $_USERNAME, $_PASSWORD, $_HOSTNAME, $_DATABASE, $_DBLINK = 'default', $_DBOBJ = null;
     private static $_count_fetch = 0, $_count_fetch_all = 0, $_count_exec = 0, $_count_sql_query = 0;
-
     public static function setUsername($value){
         self::$_USERNAME = $value;
     }
@@ -43,12 +42,6 @@ abstract class Model{
     public static function setDatabase($value){
         self::$_DATABASE = $value;
     }
-    //    public static function setdbCredentials($host, $dbname, $username, $password){
-//        self::$_HOSTNAME = $host;
-//        self::$_DATABASE = $dbname;
-//        self::$_USERNAME = $username;
-//        self::$_PASSWORD = $password;
-//    }
     public static function setDbLink($value){
         self::$_DBLINK = $value;
     }
@@ -128,6 +121,10 @@ abstract class Model{
                     return $row = self::$_DBOBJ[self::$_DBLINK]->lastInsertId();
                     break;
 
+                case 'executeModel':
+                    return true;
+                    break;
+
                 case 'delete':
                     return $query->rowCount();
                     break;
@@ -184,8 +181,6 @@ abstract class Model{
         self::$_count_sql_query ++;
         return self::_executeQuery($sqlquery, $bindparams, 'fetchAll');
     }
-
-
     private static function fetchByColumnName($sqlquery, array $bindparams = []){
         self::$_count_fetch_all ++;
         self::$_count_sql_query ++;
@@ -196,8 +191,22 @@ abstract class Model{
         self::$_count_sql_query ++;
         return self::_executeQuery($sqlquery, $bindparams, 'execute');
     }
+    private static function execModel($sqlquery, array $bindparams =[]){
+        self::$_count_exec ++;
+        self::$_count_sql_query ++;
+        return self::_executeQuery($sqlquery, $bindparams, 'executeModel');
+    }
     //    Custom functiones
     public static function all(){
+        $class =  get_called_class();
+        $class = explode('\\', $class);
+        $class = end($class);
+        if(class_exists($class)){
+            echo "Class Egsists";
+        }else {
+
+        }
+//        echo $class;
         $tblFromClass = self::getClassName(strtolower(get_called_class()));
 //        if (isset()::table)){
 //            $table = User::$table;
@@ -325,6 +334,23 @@ abstract class Model{
 //        Returns number of affected rows
         return self::updateRecord("UPDATE $table SET $paramsInQuery  where id = $id ", self::prepareArray($parameters));
     }
+    public static function createModel($modelName, array $params =[]){
+        $fieldName = array_keys($params);
+        $table = "CREATE TABLE IF NOT EXISTS `$modelName` (
+              `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,";
+        foreach ($params as $fieldName => $property){
+            if ($property == "integer"){
+                $table .= "`$fieldName` INT(8) ,";
+            }elseif($property == 'string') {
+                $table .= "`$fieldName` VARCHAR(255) ,";
+            }
+
+        }
+        $table .= "PRIMARY KEY (`id`));";
+        echo $table;
+        return self::execModel($table);
+
+    }
     //  ------------------------------------------------------------------------
     //  Return JSON
     public static function objToJSON($obj){
@@ -338,9 +364,7 @@ abstract class Model{
             'sql_query' => self::$_count_sql_query
         ];
     }
-
 //    DEVELOPMENT SECTION
-
     public static function selectJoinAndTableParam(array $joinTable = [], array $param = []){
         foreach ($joinTable as $key => $table){
             $joinTableName = $key;
@@ -358,7 +382,6 @@ abstract class Model{
 //        }
         return self::fetchAll("SELECT * from $table JOIN $joinTableName ON $table.id = $joinTableName.$joinTableForeignKey AND $joinTableName.$field = $queryParam");
     }
-
     public static function getClassName($namespaceOfClass){
         $classname = explode('\\', $namespaceOfClass);
 
@@ -367,6 +390,26 @@ abstract class Model{
             $cls = $class;
         }
         return $cls;
+    }
+    public static function models(){
+        return self::fetchAll("SHOW tables");
+    }
+    public static function ifExistsModel($modelName){
+
+        print_r($modelName);
+
+        $existingModels = self::models();
+        echo "<br>";
+        print_r($existingModels);
+        echo "<br>";
+        $exist = false;
+        foreach ($existingModels as $tableModel){
+            if ($modelName == $tableModel){
+                $exist = true;
+            }
+        }
+
+        return $exist;
     }
 
 

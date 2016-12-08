@@ -22,7 +22,7 @@ class Users extends \Core\Controller{
     }
     public function indexAction(){
 //        echo 'This is for users';
-        View::renderTemplate('admin/index.php',['eko' => '112233']);
+        View::renderTemplate('admin/index.html.php',['eko' => '112233']);
     }
 
 

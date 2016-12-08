@@ -7,24 +7,27 @@
  */
 
 namespace App\Controllers;
+use App\Models\Game;
+use App\Models\Ilir;
+use App\Models\Perdoruesit;
+use App\Models\Programer;
+use App\Models\Test;
 use Core\Controller;
 use Core\Model;
 use Core\Router;
 use \Core\View;
 use App\Models\User;
 
-class Users extends \Core\Controller{
+
+class Users extends Controller{
     public function indexAction(){
         $users = User::all();
-//        echo $this->curPageURL();
-        View::render('users/index.php',[
-            'users'      =>  $users,
-            'Colors'    => ['red', 'green', 'blue']
-        ]);
+        $test = Programer::all();
+        View::render('users/index.php',[ 'users' =>  $users, 'test' => $test]);
 
     }
     public function showAction(){
-        $user = User::find($this->rout_params['id']);
+        $user = User::find($this->id());
         View::render('users/show.php',['user'=> $user]);
     }
     public function editAction(){
@@ -37,7 +40,9 @@ class Users extends \Core\Controller{
         }
     }
     public function updateAction(){
-       if( $updated_user =User::update($this->id(), ['username' => $this->param('username'), 'password' =>$this->param('password')]) == 1 or 1==1){
+       if( $updated_user =User::update($this->id(), ['username' => $this->param('username'), 'password' =>$this->param('password')]) == 1){
+           $this->location("users/".$this->id()."/show");
+       }else{
            $this->location("users/".$this->id()."/show");
        }
 
@@ -57,16 +62,5 @@ class Users extends \Core\Controller{
         if(User::delete($this->id()) == "1"){
             $this->location("users");
         }
-//        echo User::delete($this->id());
-
     }
-
-
-
-//    =================================
-    public function returnParamId(){
-        $id = $this->rout_params['id'];
-        $id = "$id";
-        return $id;
-        }
 }

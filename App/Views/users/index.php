@@ -7,7 +7,7 @@
 <!--    <li>username: {{ user.usernam }} | password:  {{user.password}}</li>-->
 <!--    {% endfor %}-->
 <!--</ul>-->
-
+<link rel="stylesheet" href="<?php \Core\View::style('main.css')?>">
 <?php foreach ($users as $user){
     ?>
     <p>Username: <b><?php echo $user->username?></b>,
@@ -19,6 +19,10 @@
     <?php
 }?>
 <a href="<?php echo \Core\Controller::curPageURL("users/new")?>">New</a>
+
+<br>
+<?php var_dump($test)?>
+
 <!--{% endblock %}-->
 
 

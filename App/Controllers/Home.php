@@ -8,19 +8,15 @@ use \Core\View;
  * Time: 12:26 AM
  */
 class Home extends \Core\Controller {
-    protected function before(){
-//        echo "(before)";
-    }
-    protected function after(){
-//        echo '<br>(after)';
-    }
+//    protected function before(){
+////        echo "(before)";
+//    }
+//    protected function after(){
+////        echo '<br>(after)';
+//    }
     public function indexAction(){
         $name = 'Ekoloni';
-//        View::render('Home/index.php', [
-//            'name'      =>  $name,
-//            'Colors'    => ['red', 'green', 'blue']
-//        ]);
-        View::renderTemplate('Home/index.php',[
+        View::render('Home/index.php',[
             'name'      =>  $name,
             'Colors'    => ['red', 'green', 'blue']
         ]);

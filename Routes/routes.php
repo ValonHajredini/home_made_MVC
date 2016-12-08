@@ -12,9 +12,15 @@ $router->add('posts/show', ['controller' => 'Posts', 'action' => 'show']);
 
 
 $router->add('users', ['controller' => 'Users', 'action' => 'index']);
+$router->add('prog', ['controller' => 'Programers', 'action' => 'index']);
+
 $router->add('users/show', ['controller' => 'Users', 'action' => 'show']);
 $router->add('users/edit', ['controller' => 'Users', 'action' => 'edit']);
 $router->add('users/update', ['controller' => 'Users', 'action' => 'update']);
 $router->add('users/new', ['controller' => 'Users', 'action' => 'new']);
+
+
+
+
 
 
