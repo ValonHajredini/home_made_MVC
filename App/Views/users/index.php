@@ -21,7 +21,6 @@
 <a href="<?php echo \Core\Controller::curPageURL("users/new")?>">New</a>
 
 <br>
-<?php var_dump($test)?>
 
 <!--{% endblock %}-->
 

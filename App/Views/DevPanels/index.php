@@ -36,7 +36,7 @@
     <link href="<?php \Core\View::plugin('tagsinput/jquery.tagsinput.css')?>" rel="stylesheet" />
     <link href="<?php \Core\View::plugin('daterangepicker/daterangepicker-bs3.css')?>" rel="stylesheet" />
     <link href="<?php \Core\View::plugin('datepicker/css/datepicker.css')?>" rel="stylesheet" />
-    <link href="<?php \Core\View::plugin('timepicker/css/bootstrap-timepicker.min.css')?>" rel="stylesheet" />
+<!--    <link href="--><?php //\Core\View::plugin('timepicker/css/bootstrap-timepicker.min.css')?><!--" rel="stylesheet" />-->
     <link href="<?php \Core\View::plugin('switch/static/stylesheets/bootstrap-switch.css')?>" rel="stylesheet" />
     <!-- END PAGE LEVEL  STYLES -->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -394,7 +394,7 @@
             <hr />
             <!-- CHART & CHAT  SECTION -->
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             New Model
@@ -421,6 +421,23 @@
                                 </div>
                                 <hr>
                                 <h3>Columns:</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Column Number:</th>
+                                            <th>Field Name</th>
+                                            <th>Field Type</th>
+                                            <th>Require</th>
+                                            <th>Max LEngth</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="fieldGenerator">
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <div class="fields"></div>
 
 
@@ -438,6 +455,7 @@
                             </div>
 
                         </div>
+
                         </form>
                     </div>
                     <div class="panel panel-default">
@@ -844,7 +862,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             New Model
@@ -1006,21 +1024,60 @@
 <script src="<?php \Core\View::plugin('bootstrap/js/bootstrap.min.js')?>"></script>
 <!---->
 <!--<script src="assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
-<script src="<?php \Core\View::plugin('modernizr/modernizr-2.6.2-respond-1.1.0.min.js')?>"></script>
+<script src="<?php \Core\View::plugin('modernizr-2.6.2-respond-1.1.0.min.js')?>"></script>
 <!-- END GLOBAL SCRIPTS -->
 
 <!-- PAGE LEVEL SCRIPTS -->
-<!--<script src="assets/plugins/flot/jquery.flot.js"></script>-->
-<script src="<?php \Core\View::plugin('flot/jquery.flot.js')?>"></script>
-<!--<script src="assets/plugins/flot/jquery.flot.resize.js"></script>-->
-<script src="<?php \Core\View::plugin('flot/jquery.flot.resize.js')?>"></script>
-<!--<script src="assets/plugins/flot/jquery.flot.time.js"></script>-->
-<script src="<?php \Core\View::plugin('flot/jquery.flot.time.js')?>"></script>
-<!--<script  src="assets/plugins/flot/jquery.flot.stack.js"></script>-->
-<script src="<?php \Core\View::plugin('flot/jquery.flot.stack.js')?>"></script>
-<!--<script src="assets/js/for_index.js"></script>-->
-<script src="<?php \Core\View::script('for_index.js')?>"></script>
+<!--<script src="assets/js/jquery-ui.min.js"></script>-->
+<script src="<?php \Core\View::script('jquery-ui.min.js')?>"></script>
 
+<!--<script src="assets/plugins/uniform/jquery.uniform.min.js"></script>-->
+<script src="<?php \Core\View::plugin('uniform/jquery.uniform.min.js')?>"></script>
+<!--<script src="assets/plugins/inputlimiter/jquery.inputlimiter.1.3.1.min.js"></script>-->
+<script src="<?php \Core\View::plugin('inputlimiter/jquery.inputlimiter.1.3.1.min.js')?>"></script>
+<!--<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>-->
+<script src="<?php \Core\View::plugin('chosen/chosen.jquery.min.js')?>"></script>
+<!--<script src="assets/plugins/colorpicker/js/bootstrap-colorpicker.js"></script>-->
+<script src="<?php \Core\View::plugin('colorpicker/js/bootstrap-colorpicker.js')?>"></script>
+<!--<script src="assets/plugins/tagsinput/jquery.tagsinput.min.js"></script>-->
+<script src="<?php \Core\View::plugin('tagsinput/jquery.tagsinput.min.js')?>"></script>
+<!--<script src="assets/plugins/validVal/js/jquery.validVal.min.js"></script>-->
+<script src="<?php \Core\View::plugin('validVal/js/jquery.validVal.min.js')?>"></script>
+<!--<script src="assets/plugins/daterangepicker/daterangepicker.js"></script>-->
+<script src="<?php \Core\View::plugin('daterangepicker/daterangepicker.js')?>"></script>
+<!--<script src="assets/plugins/daterangepicker/moment.min.js"></script>-->
+<script src="<?php \Core\View::plugin('daterangepicker/moment.min.js')?>"></script>
+<!--<script src="assets/plugins/datepicker/js/bootstrap-datepicker.js"></script>-->
+<script src="<?php \Core\View::plugin('datepicker/js/bootstrap-datepicker.js')?>"></script>
+<!--<script src="assets/plugins/timepicker/js/bootstrap-timepicker.min.js"></script>-->
+<!--<script src="--><?php //\Core\View::plugin('bootstrap-timepicker.min.js')?><!--"></script>-->
+<script src="<?php \Core\View::plugin('switch/static/js/bootstrap-switch.min.js')?>"></script>
+<!--<script src="assets/plugins/jquery.dualListbox-1.3/jquery.dualListBox-1.3.min.js"></script>-->
+<script src="<?php \Core\View::plugin('jquery.dualListbox-1.3/jquery.dualListBox-1.3.min.js')?>"></script>
+<!--<script src="assets/plugins/autosize/jquery.autosize.min.js"></script>-->
+<script src="<?php \Core\View::plugin('autosize/jquery.autosize.min.js')?>"></script>
+<!--<script src="assets/plugins/jasny/js/bootstrap-inputmask.js"></script>-->
+<script src="<?php \Core\View::plugin('jasny/js/bootstrap-inputmask.js')?>"></script>
+
+<!--<script src="assets/plugins/flot/jquery.flot.js"></script>-->
+
+<!--<script src="assets/js/formsInit.js"></script>-->
+<!--<script src="--><?php //\Core\View::script('formsInit.js')?><!--"></script>-->
+<!--<script src="assets/js/for_index.js"></script>-->
+
+
+
+
+
+
+
+
+
+<script>
+
+//    $(function () { formInit(); });
+
+</script>
 <script>
     function generateFields(){
         var value = $('#fNumber').val();
@@ -1030,22 +1087,29 @@
             value = 20;
         }
         value = parseInt(value);
-        $('.fields').html("");
+        $('#fieldGenerator').html("");
         for (i = 1; i <= value; i++) {
-            $('.fields').append("<div class='form-group'>" +
-                "<label for='column_"+i+"' class='control-label col-lg-3'>Column name</label>" +
-                "<div class='col-lg-5'>" +
-                "<input type='text' id='field_"+i+"' name='field_"+i+"' placeholder='Colomn Name' class='form-control'>" +
-                "</div>" +
-                "<div class='col-lg-4'>" +
+            $('#fieldGenerator').append("<tr>" +
+                "<td>"+i+"</td>" +
+                "<td><input type='text' class=\"form-control\" id='field_"+i+"' name='field_"+i+"'></td>" +
+                "<td>" +
                 "<select data-placeholder='Your Favorite Type of Bear' class='form-control chzn-select chzn-rtl' tabindex='9' id='type_"+i+"' name='type_"+i+"'>" +
                 "<option value='string' selected='selected'>String</option>" +
                 "<option value='integer'>Integer</option>" +
                 "<option value='longtext'>Text</option>" +
                 "<option value='timestamp'>Timestamp</option>" +
                 "</select>" +
+                "</td>" +
+                "<td>" +
+
+                "<div class='checkbox anim-checkbox'>"+
+                "<input type='checkbox' id='require_"+i+"' name='require_"+i+"' valeue='true' class='success'>" +
+                "<label for='require_"+i+"'>Require</label>" +
                 "</div>" +
-                "</div>");
+
+                "</td>" +
+                "<td><input type='number' class=\"form-control\"  id='maxLength_"+i+"' name='maxLength_"+i+"'></td>" +
+                "<tr>");
         }
 
 
@@ -1055,8 +1119,28 @@
 
 
 
-
 </body>
 
-<!-- END BODY -->
+
+<!--for (i = 1; i <= value; i++) {-->
+<!--$('.fields').append("<div class='form-group'>" +-->
+<!--    "<label for='column_"+i+"' class='control-label col-lg-3'>Column name</label>" +-->
+<!--    "<div class='col-lg-5'>" +-->
+<!--        "<input type='text' id='field_"+i+"' name='field_"+i+"' placeholder='Colomn Name' class='form-control'>" +-->
+<!--        "</div>" +-->
+<!--    "<div class='col-lg-4'>" +-->
+<!--        "<select data-placeholder='Your Favorite Type of Bear' class='form-control chzn-select chzn-rtl' tabindex='9' id='type_"+i+"' name='type_"+i+"'>" +-->
+<!--            "<option value='string' selected='selected'>String</option>" +-->
+<!--            "<option value='integer'>Integer</option>" +-->
+<!--            "<option value='longtext'>Text</option>" +-->
+<!--            "<option value='timestamp'>Timestamp</option>" +-->
+<!--            "</select>" +-->
+<!--        "</div>" +-->
+<!--    "</div>");-->
+<!--}-->
+
+
+"<div class=\"make-switch has-switch\" data-on="success\" data-off=\"warning\">"+
+"<div class=\"switch-on\"><input type=\"checkbox\" checked=\"checked\"><span class=\"switch-left switch-success\">ON</span><label>&nbsp;</label><span class=\"switch-right switch-warning\">OFF</span></div>" +
+</div>" +
 </html>

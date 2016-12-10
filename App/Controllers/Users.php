@@ -7,11 +7,7 @@
  */
 
 namespace App\Controllers;
-use App\Models\Game;
-use App\Models\Ilir;
-use App\Models\Perdoruesit;
-use App\Models\Programer;
-use App\Models\Test;
+use App\Models\Perdoruetsit;
 use Core\Controller;
 use Core\Model;
 use Core\Router;
@@ -19,11 +15,13 @@ use \Core\View;
 use App\Models\User;
 
 
+
 class Users extends Controller{
     public function indexAction(){
+        $u = new User();
         $users = User::all();
-        $test = Programer::all();
-        View::render('users/index.php',[ 'users' =>  $users, 'test' => $test]);
+
+        View::render('users/index.php',[ 'users' =>  $users ]);
 
     }
     public function showAction(){

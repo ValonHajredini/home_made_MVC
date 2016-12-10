@@ -266,11 +266,6 @@ abstract class Model{
     }
     //    Create methode
     public static function create(array $params =[]){
-        //  The $params must be like:
-        //  $params[] = ['colName_1' => 'colValue_1', 'colName_2' => 'colValue_2', ..., 'colName_n' => 'colValue_n']
-//        if (isset(User::$table)){
-//            $table = User::$table;
-//        }else {
         $tblFromClass = self::getClassName(strtolower(get_called_class()));
         $table = $tblFromClass.'s';
 //        }

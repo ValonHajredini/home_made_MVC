@@ -25,7 +25,17 @@ class DevPanels extends Controller{
             print_r($_POST);
             echo "<br>";
             DevPanel::createTableAndModel($_POST);
+            echo "<pre>";
+            print_r($this->makeArrayFormat($_POST));
+            print_r($_POST);
+            echo "</pre>";
+//            print_r( );
 
+//            $myfile = fopen("../Database/Migration/".time()."_" .$_POST['modelName'].".php", "w") or die("Unable to open file!");
+            $this->writeArray($this->makeArrayFormat($_POST));
+//            fclose($myfile);
+//           print_r($server);
+//            die();
             $this->location("developmentpanel");
         }
 
